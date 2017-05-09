@@ -1,0 +1,14 @@
+docker run --name nginx -d \
+  -p 443:443 \
+  -v /root/certs:/etc/nginx/certs \
+  -v /root/nginx.conf:/etc/nginx/nginx.conf:ro \
+  nginx:latest
+
+docker run --name registry -d \
+  -p 5000:5000 \
+  --restart=always \
+  -v /opt/registry:/var/lib/registry \
+  -v /root/certs:/certs \
+  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/uk8s.crt \
+  -e REGISTRY_HTTP_TLS_KEY=/certs/uk8s.key \
+  registry:2
