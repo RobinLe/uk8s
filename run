@@ -12,3 +12,9 @@ docker run --name registry -d \
   -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/uk8s.crt \
   -e REGISTRY_HTTP_TLS_KEY=/certs/uk8s.key \
   registry:2
+
+docker run -d -p 5000:5000 --restart=always --name registry \
+  -v /root/config.yml:/etc/docker/registry/config.yml \
+  -v /root/certs:/certs \
+  -v /opt/registry:/var/lib/registry \
+  registry:2

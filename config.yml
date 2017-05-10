@@ -1,0 +1,20 @@
+version: 0.1
+log:
+  level: debug
+storage:
+  filesystem:
+    rootdirectory: /var/lib/registry
+  cache:
+    blobdescriptor: inmemory
+  maintenance:
+    readonly:
+      enabled: true
+http:
+  addr: :5000
+#  prefix: /registry/
+  secret: asecretforlocaldevelopment
+  debug:
+    addr: :5001
+  tls:
+    certificate: /certs/uk8s.crt
+    key: /certs/uk8s.key
