@@ -1,0 +1,9 @@
+{% extends "base.html" %} 
+
+{% block title %}registry{% endblock %} 
+
+{% block content %}
+    {% for registry in registries %}
+        <li><a href="">{{ registry }}</a></li>
+    {% endfor %}
+{% endblock %}

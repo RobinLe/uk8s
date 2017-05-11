@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}UK8S{% endblock %}</title>
+    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/semantic-ui/2.2.10/semantic.min.js"></script>
+    <link href="http://cdn.bootcss.com/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet">
+</head>
+
+<body>
+    {% block menu %}
+    <div class="ui vertical inverted segment" style="height: 10%">
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="active item">Home</a>
+                <a class="item">Work</a>
+                <a class="item">Company</a>
+                <a class="item">Careers</a>
+            </div>
+        </div>
+    </div>
+    {% endblock %} 
+
+    {% block content %}{% endblock %}
+</body>
+
+</html>
