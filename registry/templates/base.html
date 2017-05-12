@@ -10,20 +10,20 @@
 </head>
 
 <body>
-    {% block menu %}
     <div class="ui vertical inverted segment" style="height: 10%">
+        {% block menu %}
         <div class="ui container">
             <div class="ui large secondary inverted pointing menu">
-                <a class="active item">Home</a>
-                <a class="item">Work</a>
-                <a class="item">Company</a>
-                <a class="item">Careers</a>
+                <a class="active item" href="/">首页</a>
+                <a class="item" href="/registry">镜像仓库</a>
+                <a class="item" href="https://robinle.github.com">博客</a>
             </div>
         </div>
+        {% endblock %}
     </div>
-    {% endblock %} 
 
     {% block content %}{% endblock %}
+    {% block footer %}{% endblock %}
 </body>
 
 </html>

@@ -2,10 +2,52 @@
 
 {% block title %}images{% endblock %} 
 
+{% block menu %}
+<div class="ui container">
+    <div class="ui large secondary inverted pointing menu">
+        <a class="item" href="/">首页</a>
+        <a class="active item" href="/registry">镜像仓库</a>
+        <a class="item" href="https://robinle.github.com">博客</a>
+    </div>
+</div>
+{% endblock %} 
+
 {% block content %}
-    {% for image in images %}
-        <li><a href="">{{ image.id }}</a></li>
-        <li><a href="">{{ image.tag }}</a></li>
-        <li><a href="">{{ image.size }}</a></li>
-    {% endfor %}
+<div class="ui vertical container segment">
+    <div class="ui four column divided grid">
+        <div class="row">
+            <div class="column six wide">
+                <a class="header" href="/registry/{{registry}}">镜像ID</a>
+            </div>
+            <div class="column four wide">
+                <a class="header" href="/registry/{{registry}}">Tags</a>
+            </div>
+            <div class="column four wide">
+                <a class="header" href="/registry/{{registry}}">虚拟大小</a>
+            </div>
+            <div class="column two wide">
+                <a class="header" href="/registry/{{registry}}">拉取</a>
+            </div>
+        </div>
+        {% for image in images %}
+        <div class="row">
+            <div class="column six wide">
+                <i class="qrcode icon"></i>
+                <a class="header" href="/registry/{{registry}}">{{ image.id }}</a>
+            </div>
+            <div class="column four wide">
+                <a class="ui label">{{ image.tag }}</a>
+            </div>
+            <div class="column four wide">
+                <a class="ui label">
+                    <i class="file icon"></i> {{ image.size }}MB
+                </a>
+            </div>
+            <div class="column two wide">
+                <a class="ui blue circular label">1</a>
+            </div>
+        </div>
+        {% endfor %} 
+    </div>
+</div>
 {% endblock %}

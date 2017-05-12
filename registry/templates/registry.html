@@ -1,9 +1,27 @@
 {% extends "base.html" %} 
-
 {% block title %}registry{% endblock %} 
 
+{% block menu %}
+<div class="ui container">
+    <div class="ui large secondary inverted pointing menu">
+        <a class="item" href="/">首页</a>
+        <a class="active item" href="/registry">镜像仓库</a>
+        <a class="item" href="https://robinle.github.com">博客</a>
+    </div>
+</div>
+{% endblock %} 
+
 {% block content %}
-    {% for registry in registries %}
-        <li><a href="">{{ registry }}</a></li>
-    {% endfor %}
+<div class="ui vertical container segment">
+        <div class="ui large divided list">
+            {% for registry in registries %}
+            <div class="item">
+                <i class="folder icon"></i>
+                <div class="content">
+                    <a class="header" href="/registry/{{registry}}">{{ registry }}</a>
+                </div>
+            </div>
+            {% endfor %} 
+        </div>
+</div>
 {% endblock %}

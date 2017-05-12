@@ -3,5 +3,33 @@
 {% block title %}index{% endblock %} 
 
 {% block content %} 
-    <h2>Here is UK8S</h2>
+    <div class="ui vertical inverted segment" style="height: 20%"></div>
+    <div class="ui vertical inverted center aligned segment" style="height: 60%" >
+        <div class="ui text container">
+            <h1 class="ui inverted header">
+                kubernetes官方镜像mirror
+            </h1>
+            <h2>Do whatever you want when you want to.</h2>
+            <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %} 
+<div class="ui inverted vertical footer segment" style="height: 10%">
+    <div class="ui container">
+        <button class="ui circular grey github alternate icon button">
+            <i class="github alternate icon"></i>
+        </button>
+        <button class="ui circular red weibo icon button" onclick="window.location.href=''">
+            <i class="weibo icon"></i>
+        </button>
+        <button class="ui circular green weixin icon button">
+            <i class="weixin icon"></i>
+        </button>
+        <button class="ui circular blue qq icon button">
+            <i class="qq icon"></i>
+        </button>
+    </div>
+</div>
 {% endblock %}

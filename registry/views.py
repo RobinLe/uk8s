@@ -48,7 +48,7 @@ def get_images(name):
                 for i in response["layers"]:
                     image["size"] += i["size"]
                 image["size"] = round(float(image["size"]) / 1024 / 1024, 2)
-                image["id"] = response["config"]["digest"]
+                image["id"] = response["config"]["digest"][7:19]
                 image["tag"] = tag
                 image_list.append(image)
     return image_list
