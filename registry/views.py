@@ -8,7 +8,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-REGISTRY_BASE = "https://192.168.3.110:5000/v2"
+REGISTRY_BASE = "https://192.168.0.105:5000/v2"
 
 def req(url, headers=None):
     """parser response of request to json format
