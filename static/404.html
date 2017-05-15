@@ -16,7 +16,6 @@
 
 <body>
     <div class="ui vertical inverted segment" style="height: 10%">
-        {% block menu %}
         <div class="ui container">
             <div class="ui large secondary inverted pointing menu">
                 <a class="active item" href="/">首页</a>
@@ -24,11 +23,31 @@
                 <a class="item" href="https://robinle.github.com">博客</a>
             </div>
         </div>
-        {% endblock %}
     </div>
 
-    {% block content %}{% endblock %}
-    {% block footer %}{% endblock %}
+    <div class="ui vertical inverted segment" style="height: 20%"></div>
+    <div class="ui vertical inverted center aligned segment" style="height: 60%" >
+        <div class="ui text container">
+            <h1 class="ui huge inverted header">
+                404
+            </h1>
+            <button class="ui huge primary button" onclick="window.location.href='/'">
+                返回首页
+                <i class="right arrow icon"></i>
+            </button>
+        </div>
+    </div>
+
+<div class="ui inverted vertical footer segment" style="height: 10%">
+    <div class="ui container">
+        <button class="ui circular grey github alternate icon button" onclick="window.location.href='https://github.com/RobinLe'">
+            <i class="github alternate icon"></i>
+        </button>
+        <button class="ui circular red weibo icon button" onclick="window.location.href='http://weibo.com/peanut2016'">
+            <i class="weibo icon"></i>
+        </button>
+    </div>
+</div>
 </body>
 
 </html>

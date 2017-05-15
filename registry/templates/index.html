@@ -1,7 +1,5 @@
 {% extends "base.html" %} 
 
-{% block title %}index{% endblock %} 
-
 {% block content %} 
     <div class="ui vertical inverted segment" style="height: 20%"></div>
     <div class="ui vertical inverted center aligned segment" style="height: 60%" >
@@ -10,8 +8,10 @@
                 kubernetes 资源分享
             </h1>
             <h2>kubernetes 官方镜像 gcr.io/quay.io mirror</h2>
-            <h2>部署kubernetes</h2>
-            <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+            <button class="ui huge primary button" onclick="window.location.href='/registry'">
+                Get Started
+                <i class="right arrow icon"></i>
+            </button>
         </div>
     </div>
 {% endblock %}
