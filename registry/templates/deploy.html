@@ -1,0 +1,50 @@
+{% extends "base.html" %} 
+
+{% block menu %}
+<div class="ui container">
+    <div class="ui large secondary inverted pointing menu">
+        <a class="item" href="/">首页</a>
+        <a class="item" href="/registry">镜像仓库</a>
+        <a class="active item" href="/deploy">部署K8S</a>
+        <a class="item" href="https://robinle.github.com">博客</a>
+    </div>
+</div>
+{% endblock %} 
+
+{% block content %}
+<div class="ui vertical inverted segment" style="height: 20%"></div>
+<div class="ui vertical inverted center aligned segment" style="height: 60%">
+    <div class="ui text container" align="center">
+        <h1 class="ui inverted header">
+            部署kubernetes
+        </h1>
+        <div class="ui action input" style="width: 70%">
+            <input type="text" value="wget https://uk8s.com/setup_k8s.sh & bash setup_k8s.sh">
+            <button class="ui teal icon button"><i class="copy icon"></i></button>
+        </div>
+        <table class="ui small table center aligned" style="width: 60%;">
+            <tbody>
+                <tr class="positive">
+                    <td>系统环境</td>
+                    <td>Linux-amd64</td>
+                    <td><i class="large green checkmark icon"></i></td>
+                </tr>
+                <tr class="positive">
+                    <td>硬件配置</td>
+                    <td>2Core & 2GB</td>
+                    <td><i class="large green checkmark icon"></i></td>
+                </tr>
+                <tr class="negative">
+                    <td>部署环境</td>
+                    <td>Production</td>
+                    <td><i class="large red remove icon"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %} 
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock %}

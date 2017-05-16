@@ -68,3 +68,8 @@ def index(request):
     """render index page
     """
     return render(request, 'index.html')
+
+def deploy(request):
+    """render deploy page
+    """
+    return render(request, 'deploy.html')

@@ -1,30 +1,21 @@
 {% extends "base.html" %} 
 
-{% block content %} 
-    <div class="ui vertical inverted segment" style="height: 20%"></div>
-    <div class="ui vertical inverted center aligned segment" style="height: 60%" >
-        <div class="ui text container">
-            <h1 class="ui inverted header">
-                kubernetes 资源分享
-            </h1>
-            <h2>kubernetes 官方镜像 gcr.io/quay.io mirror</h2>
-            <button class="ui huge primary button" onclick="window.location.href='/registry'">
+{% block content %}
+<div class="ui vertical inverted segment" style="height: 20%"></div>
+<div class="ui vertical inverted center aligned segment" style="height: 60%">
+    <div class="ui text container">
+        <h1 class="ui inverted header">
+            kubernetes 资源分享
+        </h1>
+        <h2>kubernetes 官方镜像 gcr.io/quay.io mirror</h2>
+        <button class="ui huge primary button" onclick="window.location.href='/registry'">
                 Get Started
                 <i class="right arrow icon"></i>
             </button>
-        </div>
-    </div>
-{% endblock %}
-
-{% block footer %} 
-<div class="ui inverted vertical footer segment" style="height: 10%">
-    <div class="ui container">
-        <button class="ui circular grey github alternate icon button" onclick="window.location.href='https://github.com/RobinLe'">
-            <i class="github alternate icon"></i>
-        </button>
-        <button class="ui circular red weibo icon button" onclick="window.location.href='http://weibo.com/peanut2016'">
-            <i class="weibo icon"></i>
-        </button>
     </div>
 </div>
+{% endblock %} 
+
+{% block footer %}
+{% include "footer.html" %}
 {% endblock %}

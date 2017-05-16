@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^registry/$', views.registry, name='registry'),
     url(r'^registry/(?P<name>.+)/$', views.images, name='images'),
+    url(r'^deploy/$', views.deploy, name='deploy'),
 ]
