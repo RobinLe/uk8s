@@ -14,4 +14,12 @@ for repo in REPO["Repositories"]:
             print newtag
             call(["docker", "tag", image, newtag])
             call(["docker", "push", newtag])
+    elif repo[:7] == "quay.io":
+        for image in REPO["Repositories"][repo]:
+            if "@" in image:
+                continue
+            newtag = "uk8s.com" + image[7:]
+            print newtag
+            call(["docker", "tag", image, newtag])
+            call(["docker", "push", newtag])
             

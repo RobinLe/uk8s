@@ -8,7 +8,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-REGISTRY_BASE = "https://192.168.0.103:5000/v2"
+REGISTRY_BASE = "https://uk8s.com/v2"
 
 def req(url, headers=None):
     """parser response of request to json format
@@ -52,7 +52,7 @@ def get_images(name):
                 image["tag"] = tag
                 image["cmd"] = "docker pull uk8s.com/" + name + ":" + tag
                 image_list.append(image)
-    return image_list
+    return sorted(image_list, reverse=True)
 
 def registry(request):
     """render docker registry list page
