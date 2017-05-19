@@ -70,7 +70,9 @@ function stop_firewall() {
   /sbin/sysctl -w net.ipv4.route.flush=1 > /dev/null
 }
 
-function initenv() {
+
+
+function init_env() {
   echo -e "\033[42;37m+ Prepare kubernetes environment. \033[0m"
   ip link set cni0 down 2> /dev/null && ip link delete cni0 type bridge
   ip link set flannel.1 down 2> /dev/null && ip link delete flannel.1 type bridge
