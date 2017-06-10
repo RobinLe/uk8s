@@ -1,26 +1,18 @@
 # nginx
-docker run --name nginx --net=host -d \
+docker run -d --net=host --restart=always --name nginx \
   -p 443:443 \
   -p 80:80 \
-  -v /root/certs:/etc/nginx/certs \
+  -v /var/www/uk8s/certs:/etc/nginx/certs \
   -v /var/www/uk8s/static:/var/www/uk8s/static \
-  -v /root/nginx.conf:/etc/nginx/nginx.conf:ro \
+  -v /var/www/uk8s/nginx.conf:/etc/nginx/nginx.conf:ro \
   nginx:latest
 
 
-# registry
-docker run --name registry -d \
-  -p 5000:5000 \
-  --restart=always \
-  -v /opt/registry:/var/lib/registry \
-  -v /root/certs:/certs \
-  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/uk8s.crt \
-  -e REGISTRY_HTTP_TLS_KEY=/certs/uk8s.key \
-  registry:2
 
+# registry
 docker run -d -p 127.0.0.1:5000:5000 --restart=always --name registry \
-  -v /root/config.yml:/etc/docker/registry/config.yml \
-  -v /root/certs:/certs \
+  -v /var/www/uk8s/config.yml:/etc/docker/registry/config.yml \
+  -v /var/www/uk8s/certs:/certs \
   -v /opt/registry:/var/lib/registry \
   registry:2
 

@@ -15,5 +15,5 @@ http:
   debug:
     addr: :5001
   tls:
-    certificate: /certs/uk8s.crt
-    key: /certs/uk8s.key
+    certificate: /certs/fullchain.pem
+    key: /certs/privkey.pem
