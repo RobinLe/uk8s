@@ -20,7 +20,7 @@ spec:
   - name: kube-controller-manager
     image: uk8s.com/google-containers/hyperkube-amd64:v1.5.0
     command:
-    - ./kube-controller-manager
+    - ./controller-manager
     - --address=127.0.0.1
     - --leader-elect
     - --master=127.0.0.1:8080

@@ -153,7 +153,41 @@ EOF
 }
 
 # 创建kubernetes配置文件
-function generate_kube_config() {}
+function generate_kube_config() {
+	wget -O /etc/kubernetes/manifests/etcd.yaml https://uk8s.com/yaml/etcd.yaml -q
+	wget -O /etc/kubernetes/manifests/kube-apiserver.yaml https://uk8s.com/yaml/kube-apiserver.yaml -q
+	wget -O /etc/kubernetes/manifests/kube-scheduler.yaml https://uk8s.com/yaml/kube-scheduler.yaml -q
+	wget -O /etc/kubernetes/manifests/kube-controller-manager.yaml https://uk8s.com/yaml/kube-controller-manager.yaml -q
+	cat << EOF > /etc/kubernetes/kubelet.conf
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /etc/kubernetes/pki/ca.pem
+    server: https://${MASTER_IP}:6443
+  name: ${CLUSTER_NAME}
+contexts:
+- context:
+    cluster: ${CLUSTER_NAME}
+    user: admin
+  name: admin@${CLUSTER_NAME}
+- context:
+    cluster: ${CLUSTER_NAME}
+    user: kubelet
+  name: kubelet@${CLUSTER_NAME}
+current-context: admin@${CLUSTER_NAME}
+kind: Config
+preferences: {}
+users:
+- name: admin
+  user:
+    client-certificate: /etc/kubernetes/pki/apiserver.pem
+    client-key: /etc/kubernetes/pki/apiserver-key.pem
+- name: kubelet
+  user:
+    client-certificate: /etc/kubernetes/pki/apiserver.pem
+    client-key: /etc/kubernetes/pki/apiserver-key.pem
+EOF
+}
 
 # 配置dockerd，修改MountFlags参数
 function config_dockerd() {
@@ -208,7 +242,7 @@ function run_kubelet() {
 		-v /etc/cni/net.d/:/etc/cni/net.d/:rw \
 		-v /opt/cni/bin/:/opt/cni/bin/:rw \
 		-v /etc/kubernetes/:/etc/kubernetes/:rw \
-		uk8s.com/google-containers/hyperkube:v1.5.0 \
+		uk8s.com/google-containers/hyperkube-amd64:v1.5.0 \
 		./kubelet \
 		--kubeconfig=/etc/kubernetes/kubelet.conf \
 		--require-kubeconfig=true\

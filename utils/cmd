@@ -8,7 +8,6 @@ docker run -d --net=host --restart=always --name nginx \
   nginx:latest
 
 
-
 # registry
 docker run -d -p 127.0.0.1:5000:5000 --restart=always --name registry \
   -v /var/www/uk8s/config.yml:/etc/docker/registry/config.yml \

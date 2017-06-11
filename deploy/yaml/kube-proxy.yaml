@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    component: kube-proxy
+    k8s-app: kube-proxy
+    kubernetes.io/cluster-service: "true"
+    name: kube-proxy
+    tier: node
+  name: kube-proxy
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      component: kube-proxy
+      k8s-app: kube-proxy
+      kubernetes.io/cluster-service: "true"
+      name: kube-proxy
+      tier: node
+  template:
+    metadata:
+      labels:
+        component: kube-proxy
+        k8s-app: kube-proxy
+        kubernetes.io/cluster-service: "true"
+        name: kube-proxy
+        tier: node
+    spec:
+      containers:
+      - command:
+        - ./proxy
+        - --kubeconfig=/run/kubeconfig
+        image: uk8s.com/google-containers/hyperkube-amd64:v1.5.0
+        name: kube-proxy
+        resources: {}
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/run/dbus
+          name: dbus
+        - mountPath: /run/kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/kubernetes/pki/
+          name: certs
+      dnsPolicy: ClusterFirst
+      hostNetwork: true
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /etc/kubernetes/kubelet.conf
+        name: kubeconfig
+      - hostPath:
+          path: /var/run/dbus
+        name: dbus
+      - hostPath:
+          path: /etc/kubernetes/pki/
+        name: certs

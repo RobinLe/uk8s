@@ -13,7 +13,7 @@ spec:
   - image: uk8s.com/google-containers/hyperkube-amd64:v1.5.0
     name: kube-apiserver
     command:
-    - ./kube-apiserver
+    - ./apiserver
     - --insecure-bind-address=127.0.0.1
     - --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,PersistentVolumeLabel,DefaultStorageClass,ResourceQuota
     - --service-cluster-ip-range=10.96.0.0/12
