@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="utf-8" />
@@ -9,45 +9,68 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/semantic-ui/2.2.10/semantic.min.js"></script>
     <link href="https://cdn.bootcss.com/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet">
-    <link rel="icon" href="/logo.png" type=" image/png" sizes="16x16">
+    <link rel="icon" href="https://uk8s.com/logo.png" type="image/png" sizes="16x16">
 
     <title>uk8s kubernetes 资源分享</title>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?f65f695013425431efebc81c682d9f68";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 
 <body>
-    <div class="ui vertical inverted segment" style="height: 10%">
+    <div class="ui vertical inverted segment">
         <div class="ui container">
             <div class="ui large secondary inverted pointing menu">
-                <a class="active item" href="/">首页</a>
+                <a class="item" href="/">首页</a>
                 <a class="item" href="/registry">镜像仓库</a>
+                <a class="item" href="/deploy">部署K8S</a>
                 <a class="item" href="https://robinle.github.com">博客</a>
             </div>
         </div>
     </div>
 
-    <div class="ui vertical inverted segment" style="height: 20%"></div>
-    <div class="ui vertical inverted center aligned segment" style="height: 60%" >
+    <div class="ui vertical inverted center aligned segment" style="padding-top:17%;padding-bottom:21%">
         <div class="ui text container">
             <h1 class="ui huge inverted header">
                 404
             </h1>
             <button class="ui huge primary button" onclick="window.location.href='/'">
-                返回首页
-                <i class="right arrow icon"></i>
-            </button>
+            返回首页
+            <i class="right arrow icon"></i>
+        </button>
         </div>
     </div>
 
-<div class="ui inverted vertical footer segment" style="height: 10%">
-    <div class="ui container">
-        <button class="ui circular grey github alternate icon button" onclick="window.location.href='https://github.com/RobinLe'">
-            <i class="github alternate icon"></i>
-        </button>
-        <button class="ui circular red weibo icon button" onclick="window.location.href='http://weibo.com/peanut2016'">
-            <i class="weibo icon"></i>
-        </button>
+    <div class="ui inverted vertical footer segment">
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="three column row">
+                    <div class="column">
+                        <button class="ui small circular grey github alternate icon button" onclick="window.location.href='https://github.com/RobinLe'">
+                        <i class="github alternate icon"></i>
+                    </button>
+                        <button class="ui small circular red weibo icon button" onclick="window.location.href='http://weibo.com/peanut2016'">
+                        <i class="weibo icon"></i>
+                    </button>
+                    </div>
+                    <div class="column center floated center aligned">
+                        <i class="copyright icon"></i>2017 All rights reserved.
+                    </div>
+                    <div class="column left floated right aligned ">
+                        <button class="ui small circular blue mail icon button" onclick="location.href='mailto:miaomiao3312763@qq.com';">
+                        <i class="mail icon"></i>
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 
 </html>
