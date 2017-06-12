@@ -33,8 +33,8 @@ function download_kubernetes() {
 		exit 1
 	fi
 	# 下载cni二进制文件，kubectl二进制文件
-	wget -O /opt/cni/bin/cni-v0.3.1.tgz https://uk8s.com/cni-v0.3.1.tgz -q
-	wget -O /usr/local/bin/kubectl-amd64-v1.5.1.tgz https://uk8s.com/kubectl-amd64-v1.5.1.tgz -q
+	wget -O /opt/cni/bin/cni-v0.3.1.tgz https://uk8s.com/cni-v0.3.1.tgz
+	wget -O /usr/local/bin/kubectl-amd64-v1.5.1.tgz https://uk8s.com/kubectl-amd64-v1.5.1.tgz
 	tar -zxf /opt/cni/bin/cni-v0.3.1.tgz -C /opt/cni/bin/
 	tar -zxf /usr/local/bin/kubectl-amd64-v1.5.1.tgz -C /usr/local/bin
 }
@@ -56,6 +56,7 @@ function clean_kube_env() {
 
 # 删除kubernetes容器
 function delete_kube_container() {
+	docker ps -a | grep kubelet | awk '{print $1}' | xargs docker rm --force || true
 	docker ps -a | grep kube | awk '{print $1}' | xargs docker rm --force || true
 }
 
@@ -114,7 +115,7 @@ function check_kube_ports_status() {
 
 # 创建kubernetes证书
 function generate_kube_certs() {
-	echo -e "\033[42;37m+ Generate kubernetes certificates. \033[0m"
+	echo -e "\033[42;37m+ 创建集群证书. \033[0m"
 	# 创建CA根证书
 	openssl req -newkey rsa:2048 \
 		-nodes -sha256 -keyout ca.key -x509 -days 365 \
@@ -191,7 +192,7 @@ EOF
 
 # 配置dockerd，修改MountFlags参数
 function config_dockerd() {
-	echo -e "\033[42;37m+ Restart docker service. \033[0m"
+	echo -e "\033[42;37m+ 重启docker服务. \033[0m"
 	cat /lib/systemd/system/docker.service | grep MountFlags >/dev/null
 	rc=$?
 	if [ $rc -eq 0 ]; then
@@ -211,7 +212,7 @@ function config_dockerd() {
 
 # 关闭防火墙Firewall
 function stop_firewall() {
-	echo -e "\033[42;37m+ 关闭主机防火墙 \033[0m"
+	echo -e "\033[42;37m+ 关闭主机防火墙. \033[0m"
 	# centos
 	systemctl disable firewalld >/dev/null 2>&1 || true
 	systemctl stop firewalld >/dev/null 2>&1 || true
@@ -226,7 +227,7 @@ function stop_firewall() {
 
 # 启动kubelet
 function run_kubelet() {
-	echo -e "\033[42;37m+ Starting kubernetes. \033[0m"
+	echo -e "\033[42;37m+ 启动kubelet. \033[0m"
 	docker run -d \
 		--name=k8s-kubelet \
 		--restart=always \
@@ -257,13 +258,23 @@ function run_kubelet() {
 	sleep 60
 }
 
+# 安装必要插件
+function install_addons() {
+	echo -e "\033[42;37m+ 安装网络插件. \033[0m"
+	kubectl apply -f https://uk8s.com/yaml/kube-proxy.yaml
+	kubectl apply -f https://uk8s.com/yaml/flannel.yaml
+}
+
 # 启动kubernetes
 function run_kubernetes() {
-	download_kubernetes
 	init_kube_env
+	download_kubernetes
 	config_dockerd
 	generate_kube_certs
 	generate_kube_config
 	run_kubelet
+	install_addons
 	stop_firewall
 }
+
+run_kubernetes
