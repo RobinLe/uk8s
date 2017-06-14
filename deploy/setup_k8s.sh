@@ -275,6 +275,7 @@ function run_kubernetes() {
 	run_kubelet
 	install_addons
 	stop_firewall
+	echo -e "\033[42;37m+ 安装成功，执行kubectl get pods --all-namespaces查看组件运行状态. \033[0m"
 }
 
 run_kubernetes
